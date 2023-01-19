@@ -1,0 +1,42 @@
+{% extends "layout.html" %}
+    {% block title %} Keys {% endblock %}
+    {% block body %}
+    <main>
+        <div class="pad-search">
+          <form class="form-inline my-2 my-lg-0">
+            <input class="form-control mr-sm-2 search-field" type="search" placeholder="Search" aria-label="Search">
+            <button class="btn btn-outline-success my-2 my-sm-0  search" type="submit">Search</button>
+          </form>
+        </div>
+
+          <table class="table table-hover">
+              <thead>
+                <tr>
+                  <th scope="col">Room</th>
+                  <th scope="col">Available</th>
+                  <th scope="col">Student's ID</th>
+                  <th scope="col">Time Taken / Returned</th>
+                  <th scope="col">Student's Name</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for key in keys %}
+                  <tr>
+                    <td>{{ key["room"] }}</td>
+                    {% if key["available"] == 1 %}
+                      <td><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-circle-fill av-circle" viewBox="0 0 16 16">
+                      <circle cx="8" cy="8" r="8"/></svg></td>
+                    {% else %}
+                      <td><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-circle-fill un-circle" viewBox="0 0 16 16">
+                      <circle cx="8" cy="8" r="8"/></svg></td>
+                    {% endif %}
+                    <td>{{ key["id"] }}</td>
+                    <td>{{ key["time"] }}</td>
+                    <td>{{ key["name"] }}</td>
+                  </tr>
+                {% endfor %}
+
+              </tbody>
+            </table>
+      </main>
+    {% endblock %}
